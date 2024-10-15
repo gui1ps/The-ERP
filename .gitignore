@@ -1,0 +1,77 @@
+# Django-specific files
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# If your build process includes running collectstatic, uncomment the following line:
+# <django-project-name>/staticfiles/
+
+# Django environment and local settings
+local_settings.py
+.env
+
+# Backup files
+*.bak
+
+# IDE-specific files (PyCharm, VS Code, etc.)
+.idea/
+.vscode/
+*.iws
+*.sublime-workspace
+*.sublime-project
+
+# Python bytecode and distribution
+*.py[cod]
+*$py.class
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Celery
+celerybeat-schedule.*
+
+# Environments
+.venv/
+env/
+venv/
+
+# macOS-specific
+.DS_Store
+.AppleDouble
