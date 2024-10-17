@@ -1,0 +1,9 @@
+#navbarSupportedContent{
+    border-radius: 10px 10px 300px 300px; 
+    box-shadow: var(--smooth-shadow);
+}
+
+.navbar-icon{
+    height:40px;
+    width: 40px;
+}
