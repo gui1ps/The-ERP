@@ -1,0 +1,136 @@
+{%extends 'base_main.html'%} 
+{% load static %}
+{%block title%}The ERP - Produtos{%endblock%}
+{%block content%}
+<div class="table-responsive container-fluid h-75 my-5">
+  <table class="table align-middle table-hover table-bordered">
+    <thead class="table-light align-middle sticky-top" id="tableHeader">
+      <tr class="d-flex w-100">
+        <th class="col-1">
+          <div class="form-floating">
+            <input type="text" class="form-control border-0 bg-transparent w-100" id="id-pesquisa" placeholder="Id" data-aim="data-1" oninput="find_instance(this)">
+            <label for="id-pesquisa">Id</label>
+          </div>
+        </th>
+        <th class="col-4">
+          <div class="form-floating">
+            <input type="text" class="form-control border-0 bg-transparent" id="nome-pesquisa" placeholder="Nome" data-aim="data-2" oninput="find_instance(this)">
+            <label for="nome-pesquisa">Nome</label>
+          </div>
+        </th>
+        <th class="col-4">
+          <div class="form-floating">
+            <input type="text" class="form-control border-0 bg-transparent" id="doc-pesquisa" placeholder="Documento" data-aim="data-3" oninput="find_instance(this)">
+            <label for="doc-pesquisa">P.Venda</label>
+          </div>
+        </th>
+        <th class="col-3 text-center">Ações</th>
+      </tr>
+    </thead>
+      <tbody class="align-middle mt-5">
+        {% for product in data %}
+        <tr class="d-flex w-100">
+          <td class="data-1 col-1">{{ product.id }}</td>
+          <td class="data-2 col-4 nome_cliente">{{ product.name }}</td>
+          <td class="data-3 col-4">R${{ product.p_sell }}</td>
+          <td class="col-3 d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+            <button type="button" data-source="products" data-id="{{ product.id }}" data-name="{{ product.name }}" data-reference="{{product.reference}}" data-local="{{product.local}}" data-pcost="{{product.p_cost}}" data-psell="{{product.p_sell}}" data-profit="{{product.profit}}" data-unit="{{product.unit}}" onclick="open_modal(this)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal"><i class="fa-solid fa-eye "></i></button>
+            <a class="pe-auto btn btn-primary" href="{% url 'edit_products' product.id %}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a class="pe-auto btn btn-primary" href="{% url 'delete_products' product.id %}">
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+<a class="pe-auto btn btn-primary w-100" href="{% url 'form_products' %}">
+  <i class="fa-solid fa-plus"></i>
+</a>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-block">
+        <h5 class="modal-title" id="modalTitle"></h5>
+        <span class="badge rounded-pill bg-primary text-white" id="tipoBadge"></span>
+      </div>
+      <div class="modal-body d-flex flex-column">
+        <div class="container-fluid">
+          <div class="row d-flex">
+            <div class="col-12 d-flex justify-content-center"></div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12 position-relative">
+              <div id="info" class="d-block">
+                <div class="row mb-2">
+                  <div class="col-2">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="id" placeholder="Id" disabled>
+                      <label for="id">Id</label>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="nome" placeholder="Nome" disabled>
+                      <label for="nome">Nome</label>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="referencia" placeholder="Referência" disabled>
+                      <label for="referencia">Referência</label>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="unidade" placeholder="Unidade" disabled>
+                      <label for="unidade">Unidade</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="local" placeholder="Localizaçã" disabled>
+                      <label for="local">Localização</label>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="custo" placeholder="P.Custo" disabled>
+                      <label for="custo">P.Custo</label>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="venda" placeholder="P.Venda" disabled>
+                      <label for="venda">P.Venda</label>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="lucro" placeholder="Lucro" disabled>
+                      <label for="lucro">Lucro</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="close-modal-btn" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>       
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'customers/js/open_modal.js' %}"></script>
+<script src="{% static 'customers/js/focusin.js' %}"></script>
+{% endblock %}

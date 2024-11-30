@@ -1,0 +1,123 @@
+{%extends 'base_main.html'%} 
+{% load static %}
+{%block title%}The ERP - Clientes{%endblock%}
+{%block content%}
+<form name="form" class="bg-light rounded border border-primary p-2 my-5 h-75 overflow-y-scroll overflow-x-hidden" method="post" action="{%if data%}{% url 'get_customers' %}update/{{data.id}}/{%else%}{% url 'get_customers' %}create/{%endif%}">
+  {% csrf_token %}
+  <div class="d-flex flex-column">
+    <div class="container-fluid">
+      <div class="row mt-3">
+        <div class="col-12 position-relative">
+          <fieldset class="border border-primary p-3 rounded mb-2" id="info">
+            <legend class="fs-5">Dados básicos</legend>
+            <div class="row mb-2">
+              <div class="col-4 col-sm-2">
+                <div class="form-floating form-group">
+                  {{form.type}}
+                  <label for="id">Tipo</label>
+                </div>
+              </div>
+              <div class="col-8 col-sm-10">
+                <div class="form-floating form-group">
+                  {{ form.name }}
+                  <label for="name">Nome</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-12 col-sm-4 mb-2 mb-sm-0">
+                <div class="form-floating">
+                  {{form.b_date}}
+                  <label for="data-nascimento">Nascimento</label>
+                </div>
+              </div>
+              <div class="col-12 col-sm-8">
+                <div class="form-floating">
+                  {{form.document}}
+                  <label for="document">Documento</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-floating">
+                  {{form.observations}}
+                  <label for="obs">Observações</label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="border border-primary p-3 rounded mb-2" id="contacts">
+            <legend class="fs-5">Contatos</legend>
+            <div class="row mb-2">
+              <div class="col-12 col-sm-6 mb-2 mb-sm-0">
+                <div class="form-floating">
+                  {{form.phone}}
+                  <label for="phone">Telefone</label>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="form-floating">
+                  {{form.email}}
+                  <label for="email">E-mail</label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="border border-primary p-3 rounded mb-2" id="local">
+            <legend class="fs-5">Localização</legend>
+            <div class="row mb-2">
+              <div class="col-12 col-sm-6 mb-2 mb-sm-0">
+                <div class="form-floating">
+                  {{form.postal_code}}
+                  <label for="pcode">CEP</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-floating">
+                  {{form.street}}
+                  <label for="rua">Rua</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-12 col-sm-6 mb-2 mb-sm-0">
+                <div class="form-floating">
+                  {{form.neighborhood}}
+                  <label for="neighborhood">Bairro</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-floating">
+                  {{form.number}}
+                  <label for="numero">N.º</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-12 col-sm-6 mb-2 mb-sm-0">
+                <div class="form-floating">
+                  {{form.city}}
+                  <label for="cidade">Cidade</label>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-floating">
+                  {{form.state}}
+                  <label for="estado">Estado</label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-end gap-2">
+      <button type="submit"  class="btn btn-primary">Salvar</button>
+      <a class="btn btn-primary" href="{% url 'get_customers' %}">Voltar</a>
+    </div>
+  </div>
+</form>
+{%endblock%}

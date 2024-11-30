@@ -1,71 +1,49 @@
+/* Importação de fontes */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-:root{
-    --background-color:#F8F8F8;
-    --smooth-shadow:0px 1px 1px rgba(3, 7, 18, 0.01),
-    0px 5px 5px rgba(3, 7, 18, 0.01),
-    0px 12px 11px rgba(3, 7, 18, 0.02),
-    0px 20px 20px rgba(3, 7, 18, 0.02),
-    0px 32px 31px rgba(3, 7, 18, 0.03);
 
+/* Variáveis de tema */
+:root {
+    --background-color: #F8F8F8;
+    --background-color-two: #F0F6FE;
+    --smooth-shadow: 0px 1px 1px rgba(3, 7, 18, 0.01),
+                     0px 5px 5px rgba(3, 7, 18, 0.01),
+                     0px 12px 11px rgba(3, 7, 18, 0.02),
+                     0px 20px 20px rgba(3, 7, 18, 0.02),
+                     0px 32px 31px rgba(3, 7, 18, 0.03);
+    --smooth-shadow-2: 0px 1px 1px rgba(3, 7, 18, 0.02),
+                       0px 5px 4px rgba(3, 7, 18, 0.03),
+                       0px 12px 9px rgba(3, 7, 18, 0.05),
+                       0px 20px 15px rgba(3, 7, 18, 0.06),
+                       0px 32px 24px rgba(3, 7, 18, 0.08);
 }
-/* Reset simples para complementar o Bootstrap */
+
+/* Reset e configurações básicas */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Poppins", sans-serif;
-
 }
 
+/* Configurações de página */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
 }
 
+/* Imagens e elementos gráficos */
 img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
 }
 
+/* Formulários e controles */
 input, button, textarea, select {
     font: inherit;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul[role='list'],
-ol[role='list'] {
-    list-style: none;
-}
-
-body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeSpeed;
-}
-
-main{
-    width: 100%;
-    height: 100%;
-    background-color: var(--background-color);
-    background: url(../img/logo.svg) no-repeat center;
-}
-h1{
-    color: purple;
-}
-.logo{
-    margin: auto auto;
-    position: relative;
-    z-index: 0;
-    top: 50%;
-    left: 50%;
 }
 input.form-control:focus, 
 textarea.form-control:focus, 
@@ -75,4 +53,42 @@ select.form-control:focus {
 }
 textarea {
     resize: none;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Listas */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Corpo do documento */
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeSpeed;
+    background: url(../img/logo.svg) no-repeat center;
+    background-color: var(--background-color);
+}
+
+/* Estrutura principal */
+main {
+    width: 100%;
+    height: 100%;
+}
+
+/* Tipografia */
+
+/* Estilo de logotipo */
+.logo {
+    margin: auto auto;
+    position: relative;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
 }
