@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-3&gs65ye*r14tn21iimi4$^q)i6dchwe#rd_6ax(a(50^ibha@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,13 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'core.apps.CoreConfig',
     'home',
     'notes',
     'customers',
     'products',
     'suppliers',
     'stock',
-    'stockEntry'
+    'usuarios',
+    #'stockEntry'
 ]
 
 MIDDLEWARE = [
@@ -111,9 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -125,6 +125,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+AUTH_USER_MODEL = 'usuarios.ModelUsuario'
+LOGIN_REDIRECT_URL='home'
+LOGOUT_REDIRECT_URL='/auth/login/'
 
 
 # Default primary key field type
