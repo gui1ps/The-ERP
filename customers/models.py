@@ -18,3 +18,6 @@ class Customers(models.Model):
     observations=models.CharField(max_length=250,blank=True, null=True)
     email = models.EmailField(max_length=40,null=True,blank=True,default='default@example.com')
     phone=models.CharField(max_length=20,null=True,blank=True,default='48999999999')
+
+    def __str__(self):
+        return self.name

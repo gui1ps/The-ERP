@@ -1,0 +1,48 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block title %}The ERP - Estoque{% endblock %}
+
+{% block content %}
+<div class="table-responsive container-fluid h-75 my-5">
+    <form method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <table class="table align-middle table-hover table-bordered">
+            <thead class="table-light align-middle sticky-top" id="tableHeader">
+            <tr class="d-flex w-100">
+                <th class="col-4">
+                <div class="form-floating">
+                    <input type="text" class="form-control border-0 bg-transparent" id="nome-pesquisa" placeholder="Nome" disabled>
+                    <label for="nome-pesquisa">Produto</label>
+                </div>
+                </th>
+                <th class="col-4">
+                <div class="form-floating">
+                    <input type="text" class="form-control border-0 bg-transparent" id="tatual" placeholder="Total Atual" disabled>
+                    <label for="tatual">Total Atual</label>
+                </div>
+                </th>
+                <th class="col-4">
+                    <div class="form-floating">
+                    <input type="text" class="form-control border-0 bg-transparent" id="tfinal" placeholder="Total Final" disabled>
+                    <label for="tfinal">Total Final</label>
+                    </div>
+                </th>
+            </tr>
+            </thead>
+            <tbody class="align-middle mt-5">
+            {% for form in formset %}
+            <tr class="d-flex w-100">
+                <td class="col-4">{{form.instance.product.name}}</td>
+                <td class="col-4">{{ form.instance.quantity }}</td>
+                <td class="col-4">{{ form.id }} {{ form.quantity }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button class="pe-auto btn btn-primary w-100" type="submit">
+            <i class="fa-solid fa-check"></i>
+        </button>
+    </form>
+</div>
+{% endblock %}

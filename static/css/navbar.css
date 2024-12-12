@@ -1,8 +1,12 @@
-#navbarSupportedContent{
-    border-radius: 10px 10px 300px 300px; 
-    box-shadow: var(--smooth-shadow);
+#sidebar{
+    min-width: 250px;
+    max-width: 250px;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    position: relative;
 }
-
 .navbar-icon{
     height:40px;
     width: 40px;

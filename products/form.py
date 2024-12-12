@@ -11,5 +11,6 @@ class Product_Form(ModelForm):
             'name': forms.TextInput(attrs={'class':base_styles,'id':'name','placeholder':'Nome'}),
             'reference': forms.TextInput(attrs={'class':base_styles,'id':'referencia','placeholder':'Referência'}),
             'local': forms.TextInput(attrs={'class':base_styles,'id':'local','placeholder':'Localização'}),
-            'p_cost':forms.NumberInput(attrs={'class':base_styles,'id':'p_cost'})
+            'p_cost':forms.NumberInput(attrs={'class':base_styles,'id':'p_cost'}),
+            'unit':forms.Select(attrs={'clss':base_styles,'id':'unit'})
         }

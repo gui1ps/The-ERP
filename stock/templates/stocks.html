@@ -1,0 +1,40 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block title %}The ERP - Estoque{% endblock %}
+
+{% block content %}
+<div class="table-responsive container-fluid h-75 my-5">
+  <table class="table align-middle table-hover table-bordered">
+    <thead class="table-light align-middle sticky-top" id="tableHeader">
+      <tr class="d-flex w-100">
+        <th class="col-6">
+          <div class="form-floating">
+            <input type="text" class="form-control border-0 bg-transparent" id="nome-pesquisa" placeholder="Nome" data-aim="data-1" oninput="find_instance(this)">
+            <label for="nome-pesquisa">Produto</label>
+          </div>
+        </th>
+        <th class="col-6">
+          <div class="form-floating">
+            <input type="text" class="form-control border-0 bg-transparent" id="doc-pesquisa" placeholder="Quantidade" data-aim="data-2" oninput="find_instance(this)">
+            <label for="doc-pesquisa">Total</label>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="align-middle mt-5">
+      {% for stock in data %}
+      <tr class="d-flex w-100">
+        <td class="data-1 col-6">{{ stock.product.name }}</td>
+        <td class="data-2 col-6">{{ stock.quantity }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<a class="pe-auto btn btn-primary w-100" href="{% url 'edit_stock' %}">
+  <i class="fa-solid fa-pen"></i></a>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'customers/js/focusin.js' %}"></script>
+{% endblock %}

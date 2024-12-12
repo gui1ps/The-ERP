@@ -19,6 +19,21 @@ const modalParts = {
         city: document.getElementById('cidade'),
         state: document.getElementById('estado')
     },
+    'supplier':{
+        title: document.getElementById('modalTitle'),
+        id: document.getElementById('id'),
+        name: document.getElementById('nome'),
+        document: document.querySelector('input[id$="document"]'),
+        observations: document.getElementById('obs'),
+        phone: document.getElementById('phone'),
+        email: document.getElementById('email'),
+        postal_code: document.getElementById('pcode'),
+        street: document.getElementById('rua'),
+        neighborhood: document.getElementById('neighborhood'),
+        number: document.getElementById('numero'),
+        city: document.getElementById('cidade'),
+        state: document.getElementById('estado')
+    },
     'products':{
         title: document.getElementById('modalTitle'),
         type: document.getElementById('tipoBadge'),
@@ -67,6 +82,22 @@ function get_data(tagObject) {
                 unit: tagObject.getAttribute('data-unit')
             };
             break;
+        case 'supplier':
+            data = {
+                id: tagObject.getAttribute('data-id'),
+                name: tagObject.getAttribute('data-name'),
+                document: tagObject.getAttribute('data-document'),
+                street: tagObject.getAttribute('data-street'),
+                phone: tagObject.getAttribute('data-phone'),
+                email: tagObject.getAttribute('data-email'),
+                number: tagObject.getAttribute('data-number'),
+                neighborhood: tagObject.getAttribute('data-neighborhood'),
+                city: tagObject.getAttribute('data-city'),
+                state: tagObject.getAttribute('data-state'),
+                postal_code: tagObject.getAttribute('data-postal_code'),
+                observations: tagObject.getAttribute('data-observations')
+            }
+            break;
         default:
             console.error(`Unknown data source: ${source}`);
             return null;
@@ -101,7 +132,7 @@ function modify_modal(tagObject) {
             break;
         case 'products':
             root.title.innerText = data.name;
-            root.type.innerText = 'Produto'; // Você pode ajustar conforme a lógica
+            root.type.innerText = 'Produto'; 
             root.id.value = data.id;
             root.name.value = data.name;
             root.reference.value = data.reference;
@@ -111,6 +142,19 @@ function modify_modal(tagObject) {
             root.sell.value = data.psell;
             root.profit.value = data.profit;
             break;
+        case'supplier':
+            root.id.value = data.id;
+            root.name.value = data.name;
+            root.document.value = data.document;
+            root.observations.innerText = data.observations;
+            root.email.value = data.email;
+            root.phone.value = data.phone;
+            root.postal_code.value = data.postal_code;
+            root.street.value = data.street;
+            root.neighborhood.value = data.neighborhood;
+            root.number.value = data.number;
+            root.city.value = data.city;
+            root.state.value = data.state;
         default:
             break
     }

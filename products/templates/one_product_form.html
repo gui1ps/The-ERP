@@ -11,37 +11,46 @@
           <fieldset class="border border-primary p-3 rounded mb-2" id="info">
                 <legend class="fs-5">Dados básicos</legend>
                 <div class="row mb-2">
-                <div class="col-4 col-sm-2">
-                    <div class="form-floating form-group">
-                    {{form.type}}
-                    <label for="id">Tipo</label>
-                    </div>
+                  <div class="col-8 col-sm-10">
+                      <div class="form-floating form-group">
+                      {{ form.name }}
+                      <label for="name">Nome</label>
+                      </div>
+                  </div>
+                  <div class="col-4 col-sm-2">
+                      <div class="form-floating form-group">
+                      {{form.reference}}
+                      <label for="id">Referência</label>
+                      </div>
+                  </div>
                 </div>
-                <div class="col-8 col-sm-10">
-                    <div class="form-floating form-group">
-                    {{ form.name }}
-                    <label for="name">Nome</label>
-                    </div>
-                </div>
-                </div>
-                <div class="row mb-2">
-                <div class="col-12 col-sm-4 mb-2 mb-sm-0">
-                    <div class="form-floating">
-                    {{form.b_date}}
-                    <label for="data-nascimento">Nascimento</label>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-8">
-                    <div class="form-floating">
-                    {{form.document}}
-                    <label for="document">Documento</label>
-                    </div>
-                </div>
+                <div class="row">
+                  <div class="col-2 mb-2 mb-sm-0">
+                      <div class="form-floating">
+                      {{form.unit}}
+                      <label for="data-nascimento">Unidade</label>
+                      </div>
+                  </div>
+                  <div class="col-4 col-sm-10">
+                      <div class="form-floating">
+                      {{form.local}}
+                      <label for="document">Localização</label>
+                      </div>
+                  </div>
+                  <div class="col-2">
+                    {{form.p_sell}}
+                  </div>
+                  <div class="col-2">
+                    {{form.p_cost}}
+                  </div>
+                  <div class="col-2">
+                    {{form.profit}}
+                  </div>
                 </div>
                 <div class="row">
                 <div class="col-12">
                     <div class="form-floating">
-                    {{form.observations}}
+                    {{form.p_cost}}
                     <label for="obs">Observações</label>
                     </div>
                 </div>

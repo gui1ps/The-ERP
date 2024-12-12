@@ -1,34 +1,45 @@
 {%load static%}
-<nav class="navbar navbar-expand p-0 mb-3 w-100">
-  <div class="container">
-      <div class="collapse navbar-collapse d-flex bg-primary" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
-                      <img class="navbar-icon" loading="lazy" alt="ícone" src="{% static 'icons/mdi_cart-outline.svg' %}"/>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'get_customers' %}">
-                      <img class="navbar-icon" loading="lazy" alt="ícone" src="{% static 'icons/ph_user-bold.svg' %}"/>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
-                      <img class="navbar-icon" loading="lazy" alt="ícone" src="{% static 'icons/ph_cash-register.svg' %}"/>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'get_products' %}">
-                      <img class="navbar-icon" loading="lazy" alt="ícone" src="{% static 'icons/carbon_product.svg' %}"/>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
-                      <img class="navbar-icon" loading="lazy" alt="ícone" src="{% static 'icons/mdi_graph-pie-outline.svg' %}"/>
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
+<nav class="navbar navbar-expand p-0 h-100" id="sidebar">
+    <div class="container h-100 w-100 p-0">
+        <div class="collapse navbar-collapse d-flex bg-primary h-100 w-100" id="">
+            <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{%url 'get_sales' %}">
+                        <img class="navbar-icon" loading="lazy" alt="ícone"
+                            src="{% static 'icons/mdi_cart-outline.svg' %}" />
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'get_customers' %}">
+                        <img class="navbar-icon" loading="lazy" alt="ícone"
+                            src="{% static 'icons/ph_user-bold.svg' %}" />
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">
+                        <img class="navbar-icon" loading="lazy" alt="ícone"
+                            src="{% static 'icons/ph_cash-register.svg' %}" />
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'get_products' %}">
+                        <img class="navbar-icon" loading="lazy" alt="ícone"
+                            src="{% static 'icons/carbon_product.svg' %}" />
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'get_stock' %}">
+                        <img class="navbar-icon" loading="lazy" alt="ícone"
+                            src="{% static 'icons/boxes-stacked-solid.svg' %}" />
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'get_suppliers' %}">
+                        <img class="navbar-icon" loading="lazy" alt="ícone"
+                            src="{% static 'icons/truck-solid.svg' %}" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>

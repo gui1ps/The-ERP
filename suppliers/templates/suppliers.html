@@ -1,0 +1,196 @@
+{%extends 'base_main.html'%} 
+{% load static %}
+{%block title%}The ERP - Fornecedores{%endblock%}
+{%block content%}
+<div class="table-responsive container-fluid h-75 my-5">
+  <table class="table align-middle table-hover table-bordered">
+    <thead class="table-light align-middle sticky-top" id="tableHeader">
+      <tr class="d-flex w-100">
+        <th class="col-1">
+          <div class="form-floating">
+            <input type="text" class="form-control border-0 bg-transparent w-100" id="id-pesquisa" placeholder="Id" data-aim="data-1" oninput="find_instance(this)">
+            <label for="id-pesquisa">Id</label>
+          </div>
+        </th>
+        <th class="col-4">
+          <div class="form-floating">
+            <input type="text" class="form-control border-0 bg-transparent" id="nome-pesquisa" placeholder="Nome" data-aim="data-2" oninput="find_instance(this)">
+            <label for="nome-pesquisa">Nome</label>
+          </div>
+        </th>
+        <th class="col-4">
+          <div class="form-floating">
+            <input type="text" class="form-control border-0 bg-transparent" id="doc-pesquisa" placeholder="Documento" data-aim="data-3" oninput="find_instance(this)">
+            <label for="doc-pesquisa">Doc.</label>
+          </div>
+        </th>
+        <th class="col-3 text-center">Ações</th>
+      </tr>
+    </thead>
+    <tbody class="align-middle mt-5">
+      {% for supplier in data %}
+      <tr class="d-flex w-100">
+        <td class="data-1 col-1">{{ supplier.id }}</td>
+        <td class="data-2 col-4 nome_cliente">{{ supplier.name }}</td>
+        <td class="data-3 col-4">{{ supplier.document }}</td>
+        <td class="col-3 d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
+          <button type="button" data-id="{{ supplier.id }}" data-source="supplier" data-name="{{ supplier.name }}" data-type="{{ supplier.type }}" data-document="{{ supplier.document }}" data-email="{{supplier.email}}" data-phone="{{supplier.phone}}" data-street="{{ supplier.street }}" data-number="{{ supplier.number }}" data-neighborhood="{{ supplier.neighborhood }}" data-city="{{ supplier.city }}" data-state="{{ supplier.state }}" data-postal_code="{{ supplier.postal_code }}" data-observations="{{ supplier.observations }}" onclick="open_modal(this)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+            <i class="fa-solid fa-eye"></i>
+          </button>
+          <a class="pe-auto btn btn-primary" href="{% url 'edit_supplier' supplier.id %}">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
+          <a class="pe-auto btn btn-primary" href="{% url 'delete_supplier' supplier.id %}">
+            <i class="fa-solid fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<a class="pe-auto btn btn-primary w-100 shadow" href="{% url 'form_suppliers' %}">
+  <i class="fa-solid fa-plus"></i>
+</a>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-block">
+        <h5 class="modal-title" id="modalTitle"></h5>
+        <span class="badge rounded-pill bg-primary text-white" id="tipoBadge"></span>
+      </div>
+      <div class="modal-body d-flex flex-column">
+        <div class="container-fluid">
+          <div class="row d-flex">
+            <div class="col-12 d-flex justify-content-center">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-primary py-1 px-3" id="activate_info">
+                  <i class="fa-solid fa-info"></i>
+                </button>
+                <button type="button" class="btn btn-primary py-1 px-3" id="activate_contacts">
+                  <i class="fa-solid fa-phone"></i>
+                </button>
+                <button type="button" onclick="generate_map()" class="btn btn-primary py-1 px-3" id="activate_local">
+                  <i class="fa-solid fa-location-dot"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-12 position-relative">
+              <div id="info" class="d-block">
+                <div class="row mb-2">
+                  <div class="col-2">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="id" placeholder="Id" disabled>
+                      <label for="id">Id</label>
+                    </div>
+                  </div>
+                  <div class="col-10">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="nome" placeholder="Nome" disabled>
+                      <label for="nome">Nome</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="document" placeholder="Documento" disabled>
+                      <label for="document">Documento</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <textarea class="form-control border-primary bg-transparent" placeholder="Observações" id="obs" style="height: 100px" disabled></textarea>
+                      <label for="obs">Observações</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="contacts" class="d-none">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="phone" placeholder="Telefone" disabled>
+                      <label for="phone">Telefone</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-floating">
+                      <input type="email" class="form-control border-primary bg-transparent" id="email" placeholder="Telefone" disabled>
+                      <label for="email">E-mail</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="local" class="d-none">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="pcode" placeholder="CEP" disabled>
+                      <label for="pcode">CEP</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="rua" placeholder="Rua" disabled>
+                      <label for="rua">Rua</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="neighborhood" placeholder="Bairro" disabled>
+                      <label for="neighborhood">Bairro</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="numero" placeholder="Número" disabled>
+                      <label for="numero">N.º</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="cidade" placeholder="Cidade" disabled>
+                      <label for="cidade">Cidade</label>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-floating">
+                      <input type="text" class="form-control border-primary bg-transparent" id="estado" placeholder="Estado" disabled>
+                      <label for="estado">Estado</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <iframe class="w-100" id="mapIframe" loading="lazy" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="close-modal-btn" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>       
+
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'customers/js/swich_info.js' %}"></script>
+<script src="{% static 'customers/js/open_modal.js' %}"></script>
+<script src="{% static 'customers/js/generate_map.js' %}"></script>
+<script src="{% static 'customers/js/focusin.js' %}"></script>
+{% endblock %}

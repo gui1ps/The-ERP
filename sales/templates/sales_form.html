@@ -1,0 +1,56 @@
+{% extends 'base_main.html' %}
+{% load static %}
+{% block title %}The ERP - Venda{% endblock %}
+
+{% block content %}
+<div class="rounded p-3 h-75 my-5 bg-dark">
+    <form action="" id="form-container">
+        {% csrf_token %}
+        <div class="d-flex justify-content-between">
+            {{form.customer}}
+        </div>
+        <div class="table-responsive container-fluid w-100 m-2">
+                <table class="table align-middle table-hover table-bordered position-relative">
+                    <thead class="table-light align-middle sticky-top" id="tableHeader">
+                    <tr class="d-flex w-100">
+                        <th class="col-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control border-0 bg-transparent" id="nome-pesquisa" placeholder="Nome" disabled>
+                            <label for="nome-pesquisa">Produto</label>
+                        </div>
+                        </th>
+                        <th class="col-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control border-0 bg-transparent" id="tatual" placeholder="Total Atual" disabled>
+                            <label for="tatual">Quantidade</label>
+                        </div>
+                        </th>
+                        <th class="col-4">
+                            <div class="form-floating">
+                            <input type="text" class="form-control border-0 bg-transparent" id="tfinal" placeholder="Total Final" disabled>
+                            <label for="tfinal">Total</label>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="align-middle mt-5">
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                    <tr class="d-flex w-100 bird-form">
+                        <td class="col-4">{{form.name}}</td>
+                        <td class="col-4">{{ form.quantity }}</td>
+                        <td class="col-4">{{form.price}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                    <button class="pe-auto btn btn-primary w-100" id="add-form">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </table>
+        </div>
+        <button class="pe-auto btn btn-primary w-100" type="submit">
+            Finalizar
+        </button>
+    </form>
+</div>
+{% endblock %}

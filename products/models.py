@@ -4,6 +4,8 @@ from suppliers.models import Suppliers
 class Units(models.Model):
     name=models.CharField(max_length=10,null=False,blank=False)
     description=models.CharField(max_length=250,null=False,blank=False)
+    def __str__(self):
+        return self.name
 
 class Products(models.Model):
     name=models.CharField(max_length=100,null=False,blank=False)
@@ -14,4 +16,7 @@ class Products(models.Model):
     p_cost=models.FloatField(null=False,blank=False)
     p_sell=models.FloatField(null=False,blank=False)
     profit=models.FloatField(null=False,blank=False)
+
+    def __str__(self):
+        return self.name
 
