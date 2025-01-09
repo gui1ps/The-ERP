@@ -3,47 +3,45 @@
 {% block title %}The ERP - Venda{% endblock %}
 
 {% block content %}
-<div class="rounded p-3 h-75 my-5 bg-dark">
-    <form action="" id="form-container">
+<div class="rounded p-3 my-auto">
+    <form action="" id="form-container" class="border-primary position-relative">
         {% csrf_token %}
         <div class="d-flex justify-content-between">
-            {{form.customer}}
+            <div class="form-floating">
+                {{form.customer}}
+                <label for="customer">Cliente</label>
+            </div>
         </div>
-        <div class="table-responsive container-fluid w-100 m-2">
-                <table class="table align-middle table-hover table-bordered position-relative">
+        <div class="table-responsive container-fluid p-0 ">
+                <table class="table align-middle table-hover table-bordered">
                     <thead class="table-light align-middle sticky-top" id="tableHeader">
                     <tr class="d-flex w-100">
-                        <th class="col-4">
-                        <div class="form-floating">
-                            <input type="text" class="form-control border-0 bg-transparent" id="nome-pesquisa" placeholder="Nome" disabled>
-                            <label for="nome-pesquisa">Produto</label>
-                        </div>
+                        <th class="col-3 p-0 text-center">
+                            Produto
                         </th>
-                        <th class="col-4">
-                        <div class="form-floating">
-                            <input type="text" class="form-control border-0 bg-transparent" id="tatual" placeholder="Total Atual" disabled>
-                            <label for="tatual">Quantidade</label>
-                        </div>
+                        <th class="col-3 p-0 text-center">
+                            Val. Unitário
                         </th>
-                        <th class="col-4">
-                            <div class="form-floating">
-                            <input type="text" class="form-control border-0 bg-transparent" id="tfinal" placeholder="Total Final" disabled>
-                            <label for="tfinal">Total</label>
-                            </div>
+                        <th class="col-3 p-0 text-center">
+                            Quantidade
+                        </th>
+                        <th class="col-3 p-0 text-center">
+                            Val. Total
                         </th>
                     </tr>
                     </thead>
-                    <tbody class="align-middle mt-5">
+                    <tbody class="align-middle mt-5" id="table-products">
                     {{ formset.management_form }}
                     {% for form in formset %}
-                    <tr class="d-flex w-100 bird-form">
-                        <td class="col-4">{{form.name}}</td>
-                        <td class="col-4">{{ form.quantity }}</td>
-                        <td class="col-4">{{form.price}}</td>
+                    <tr class="d-flex w-100">
+                        <td class="col-3">{{form.product}}</td>
+                        <td class="col-3">{{form.product.p_sell}}</td>
+                        <td class="col-3">{{ form.quantity}}</td>
+                        <td class="col-3">{{form.price}}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
-                    <button class="pe-auto btn btn-primary w-100" id="add-form">
+                    <button class="pe-auto btn btn-primary position-absolute top-100 start-100 translate-middle rounded-circle z-2" id="add-form">
                         <i class="fa-solid fa-plus"></i>
                     </button>
                 </table>
@@ -54,3 +52,6 @@
     </form>
 </div>
 {% endblock %}
+{%block extra_js%}
+<script src="{%static 'js/add_products.js'%}"></script>
+{%endblock%}

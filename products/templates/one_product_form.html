@@ -1,70 +1,77 @@
-{%extends 'base_main.html'%} 
+{% extends 'base_main.html' %} 
 {% load static %}
-{%block title%}The ERP - Produtos{%endblock%}
-{%block content%}
-<form name="form" class="bg-light rounded border border-primary p-2 my-5 h-75 overflow-y-scroll overflow-x-hidden" method="post" action="{%if data%}{% url 'get_products' %}update/{{data.id}}/{%else%}{% url 'get_products' %}create/{%endif%}">
+{% block title %}The ERP - Produtos{% endblock %}
+{% block content %}
+<form name="form" class="bg-light rounded border border-primary p-2 my-5 overflow-x-hidden" method="post" action="{% if data %}{% url 'get_products' %}update/{{ data.id }}/{% else %}{% url 'get_products' %}create/{% endif %}">
   {% csrf_token %}
   <div class="d-flex flex-column">
     <div class="container-fluid">
       <div class="row mt-3">
         <div class="col-12 position-relative">
-          <fieldset class="border border-primary p-3 rounded mb-2" id="info">
-                <legend class="fs-5">Dados básicos</legend>
-                <div class="row mb-2">
-                  <div class="col-8 col-sm-10">
-                      <div class="form-floating form-group">
-                      {{ form.name }}
-                      <label for="name">Nome</label>
-                      </div>
-                  </div>
-                  <div class="col-4 col-sm-2">
-                      <div class="form-floating form-group">
-                      {{form.reference}}
-                      <label for="id">Referência</label>
-                      </div>
-                  </div>
+          <fieldset class="border border-primary p-3 rounded mb-3" id="info">
+            <legend class="fs-5">Dados básicos</legend>
+            <div class="row mb-3">
+              <div class="col-8 col-sm-10">
+                <div class="form-floating form-group">
+                  {{ form.name }}
+                  <label for="id_name">Nome</label>
                 </div>
-                <div class="row">
-                  <div class="col-2 mb-2 mb-sm-0">
-                      <div class="form-floating">
-                      {{form.unit}}
-                      <label for="data-nascimento">Unidade</label>
-                      </div>
-                  </div>
-                  <div class="col-4 col-sm-10">
-                      <div class="form-floating">
-                      {{form.local}}
-                      <label for="document">Localização</label>
-                      </div>
-                  </div>
-                  <div class="col-2">
-                    {{form.p_sell}}
-                  </div>
-                  <div class="col-2">
-                    {{form.p_cost}}
-                  </div>
-                  <div class="col-2">
-                    {{form.profit}}
-                  </div>
+              </div>
+              <div class="col-4 col-sm-2">
+                <div class="form-floating form-group">
+                  {{ form.reference }}
+                  <label for="id_reference">Referência</label>
                 </div>
-                <div class="row">
-                <div class="col-12">
-                    <div class="form-floating">
-                    {{form.p_cost}}
-                    <label for="obs">Observações</label>
-                    </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2 mb-2 mb-sm-0">
+                <div class="form-floating">
+                  {{ form.unit }}
+                  <label for="id_unit">Unidade</label>
                 </div>
+              </div>
+              <div class="col-8">
+                <div class="form-floating form-group">
+                  {{ form.local }}
+                  <label for="id_local">Localização</label>
                 </div>
+              </div>
+              <div class="col-2">
+                <div class="form-floating form-group">
+                  {{ form.supplier }}
+                  <label for="supplier">Fornecedor</label>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-4">
+                <div class="form-floating form-group">
+                  {{ form.p_sell }}
+                  <label for="id_p_sell">Preço de Venda</label>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-floating form-group">
+                  {{ form.p_cost }}
+                  <label for="id_p_cost">Preço de Custo</label>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-floating form-group">
+                  {{ form.profit }}
+                  <label for="id_profit">Lucro</label>
+                </div>
+              </div>
+            </div>
           </fieldset>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 d-flex justify-content-end gap-2">
-      <button type="submit"  class="btn btn-primary">Salvar</button>
-      <a class="btn btn-primary" href="{% url 'get_products' %}">Voltar</a>
-    </div>
+  <div class="d-flex gap-1 justify-content-center align-itens-center w-100 position-absolute bottom-0 end-0 px-1">
+    <a class="btn btn-primary w-50" href="{% url 'get_products' %}">Voltar</a>
+    <button type="submit"  class="btn btn-primary w-50">Salvar</button>
   </div>
 </form>
-{%endblock%}
+{% endblock %}

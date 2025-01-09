@@ -6,25 +6,23 @@
 {%endblock%}
 {%block title%}The ERP - Home{%endblock%}
 {%block content%}
-<div class="col align-self-center d-flex justify-content-center align-itens-center" id="notesSide">
-    <div class="row g-1">
+<div class="container text-center">
+    <!--
+    <div class="grid">
         {% for instance,object in db_form %}
-            <div class="col-5 m-1 p-3 note shadown">
-                <form method="post" action="http://127.0.0.1:8000/notes/update/{{object.id}}/">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        {{instance.title}}
-                    </div>
-                    <div class="form-group">
-                        {{instance.content}}
-                    </div>
-                    <button class="bg-dark border-0 rounded-circle p-1" type="submit"><img loading="lazy" alt="ínoce caneta" src="{% static 'icons/mdi_pen.svg' %}"/></button>
-                  </form>
-            </div>
+        {% csrf_token %}
+        <div class="g-col p-3 bg-light bg-gradient shadown">
+            <form method="post" action="http://127.0.0.1:8000/notes/update/{{object.id}}/">
+                <div class="form-group">
+                    {{instance.title}}
+                </div>
+                <div class="form-group">
+                    {{instance.content}}
+                </div>
+                <button class="bg-dark border-0 rounded-circle p-1" type="submit"><img loading="lazy" alt="ínoce caneta" src="{% static 'icons/mdi_pen.svg' %}"/></button>
+            </form>
+        </div>
         {% endfor %}
     </div>
-</div>
-<div class="col align-self-center d-flex justify-content-center align-itens-center" id="buttonsSide">
-
-</div>
+</div>--->
 {%endblock%}

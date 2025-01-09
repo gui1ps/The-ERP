@@ -1,45 +1,27 @@
 {%load static%}
-<nav class="navbar navbar-expand p-0 h-100" id="sidebar">
-    <div class="container h-100 w-100 p-0">
-        <div class="collapse navbar-collapse d-flex bg-primary h-100 w-100" id="">
-            <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0 flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{%url 'get_sales' %}">
-                        <img class="navbar-icon" loading="lazy" alt="ícone"
-                            src="{% static 'icons/mdi_cart-outline.svg' %}" />
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'get_customers' %}">
-                        <img class="navbar-icon" loading="lazy" alt="ícone"
-                            src="{% static 'icons/ph_user-bold.svg' %}" />
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <img class="navbar-icon" loading="lazy" alt="ícone"
-                            src="{% static 'icons/ph_cash-register.svg' %}" />
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'get_products' %}">
-                        <img class="navbar-icon" loading="lazy" alt="ícone"
-                            src="{% static 'icons/carbon_product.svg' %}" />
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'get_stock' %}">
-                        <img class="navbar-icon" loading="lazy" alt="ícone"
-                            src="{% static 'icons/boxes-stacked-solid.svg' %}" />
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'get_suppliers' %}">
-                        <img class="navbar-icon" loading="lazy" alt="ícone"
-                            src="{% static 'icons/truck-solid.svg' %}" />
-                    </a>
-                </li>
-            </ul>
+<div class="h-100 py-1 border-end bg-primary text-light overflow-y-scroll" id="sidebar">
+    <nav class="h-100 d-flex flex-column flex-start align-items-start justify-content-center px-3">
+        <ul class="d-flex flex-column p-0 py-2">
+            <li class="d-flex gap-3 fs-5 my-4 active rounded"><img src="{%static 'icons/house-solid.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link w-100" href="{%url 'home' %}" aria-current="page">Home</a></li>
+            <li class="d-flex gap-3 fs-5my-4 rounded"><img src="{%static 'icons/mdi_cart-outline.svg'%}" height="40px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{%url 'get_sales' %}">Vendas</a></li>
+            <li class="d-flex gap-3 fs-5 my-4 rounded rounded"><img src="{%static 'icons/ph_user-bold.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{% url 'get_customers' %}">Clientes</a></li>
+            <li class="d-flex gap-3 fs-5 my-4 rounded"><img src="{%static 'icons/ph_cash-register.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="#">Caixa</a></li>
+            <li class="d-flex gap-3 fs-5 my-4 rounded"><img src="{%static 'icons/carbon_product.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{% url 'get_products' %}">Produtos</a></li>
+            <li class="d-flex gap-3 fs-5 my-4 rounded"><img src="{%static 'icons/boxes-stacked-solid.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{% url 'get_stock' %}">Estoque</a></li>
+            <li class="d-flex gap-3 fs-5 my-4 rounded"><img src="{%static 'icons/house-solid.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{% url 'get_suppliers' %}">Fornecedores</a></li>
+        </ul>
+        <div class="w-100 border-top">
+            <div class="dropdown my-4">
+                <a class="dropdown-toggle d-flex align-items-center text-decoration-none" href="#" data-bs-toggle="dropdown">
+                    <strong class="text-light">{{ user.get_full_name|default:user.username }}</strong>
+                </a>
+                <div class="dropdown-menu shadow text-small text-light">
+                    <a class="dropdown-item" href="#">Configurações</a>
+                    <a class="dropdown-item" href="#">Perfil</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>

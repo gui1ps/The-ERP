@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 class Stock(models.Model):
-    product = models.OneToOneField(Products, on_delete=models.CASCADE, related_name='stock')
+    product = models.OneToOneField(Products, on_delete=models.CASCADE, related_name='product')
     quantity = models.PositiveIntegerField(default=0)
     updated_date = models.DateField(auto_now=True)
 

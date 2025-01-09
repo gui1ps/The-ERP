@@ -10,7 +10,7 @@ class Units(models.Model):
 class Products(models.Model):
     name=models.CharField(max_length=100,null=False,blank=False)
     reference=models.CharField(max_length=10,null=False,blank=False)
-    fornecedores = models.ManyToManyField(Suppliers, related_name='produtos')
+    supplier = models.OneToOneField(Suppliers, related_name='produtos', on_delete=models.CASCADE, null=True,blank=True)
     unit = models.ForeignKey(Units, on_delete=models.CASCADE, related_name='products')    
     local=models.CharField(max_length=25,null=False,blank=False)
     p_cost=models.FloatField(null=False,blank=False)
