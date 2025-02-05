@@ -36,10 +36,10 @@
     <tbody class="align-middle mt-5">
       {% for sale in data %}
       <tr class="d-flex w-100">
-        <td class="data-1 col-6">{{ sale.id }}</td>
-        <td class="data-2 col-6">{{ sale.customer }}</td>
-        <td class="data-2 col-6">{{ sale.crated_date }}</td>
-        <td class="data-2 col-6">{{ sale.total }}</td>
+        <td class="data-1 col-3">{{ sale.id }}</td>
+        <td class="data-2 col-3">{{ sale.customer }}</td>
+        <td class="data-2 col-3">{{ sale.crated_date }}</td>
+        <td class="data-2 col-3">R${{ sale.total }}</td>
       </tr>
       {% endfor %}
     </tbody>

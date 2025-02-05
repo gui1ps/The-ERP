@@ -4,47 +4,52 @@
 
 {% block content %}
 <div class="rounded p-3 my-auto">
-    <form action="" id="form-container" class="border-primary position-relative">
+    <form action="{%url 'create_sales'%}" method="post" id="form-container" class="border-primary position-relative">
         {% csrf_token %}
-        <div class="d-flex justify-content-between">
-            <div class="form-floating">
-                {{form.customer}}
-                <label for="customer">Cliente</label>
-            </div>
-        </div>
-        <div class="table-responsive container-fluid p-0 ">
-                <table class="table align-middle table-hover table-bordered">
-                    <thead class="table-light align-middle sticky-top" id="tableHeader">
+        <div class="table-responsive container-fluid p-0">
+            <table class="table align-middle table-hover table-bordered">
+                <thead class="table-light align-middle sticky-top" id="tableHeader">
                     <tr class="d-flex w-100">
-                        <th class="col-3 p-0 text-center">
-                            Produto
-                        </th>
-                        <th class="col-3 p-0 text-center">
-                            Val. Unitário
-                        </th>
-                        <th class="col-3 p-0 text-center">
-                            Quantidade
-                        </th>
-                        <th class="col-3 p-0 text-center">
-                            Val. Total
-                        </th>
+                        <th class="col-2 p-0 text-center">Produto</th>
+                        <th class="col-2 p-0 text-center">Quantidade</th>
+                        <th class="col-2 p-0 text-center">Val. Unitário</th>
+                        <th class="col-2 p-0 text-center">Val. Total</th>
+                        <th class="col-4 p-0 text-center">Ações</th>
                     </tr>
-                    </thead>
-                    <tbody class="align-middle mt-5" id="table-products">
+                </thead>
+                <tbody class="align-middle mt-5" id="table-products">
+                    <tr class="d-flex w-100">
+                        <td class="col-2">
+                            <select id="product-selector" class="form-select border-primary bg-transparent">
+                                <option value="" selected>---------</option>
+                            </select>
+                        </td>
+                        <td class="col-2">
+                            <input type="number" id="product-selector-quantity" class="form-control border-primary bg-transparent" min="1" value="1">
+                        </td>
+                        <td class="col-2">
+                            <span>R$ <span id="product-selector-price"></span></span>
+                        </td>
+                        <td class="col-2">
+                            <span>R$ <span id="product-selector-total"></span></span>
+                        </td>
+                        <td class="col-4 text-center">
+                            <button class="btn btn-primary" id="add-product">Incluir</button>
+                        </td>
+                    </tr>
                     {{ formset.management_form }}
-                    {% for form in formset %}
+                    <!--Os forms são inclusos aqui de forma dinâmica pelo código em Java Script-->                    
+                </tbody>
+                <tfoot>
                     <tr class="d-flex w-100">
-                        <td class="col-3">{{form.product}}</td>
-                        <td class="col-3">{{form.product.p_sell}}</td>
-                        <td class="col-3">{{ form.quantity}}</td>
-                        <td class="col-3">{{form.price}}</td>
+                        <td class="col-2"><div class="form-floating">{{ form.customer}}<label for="customer">Cliente</label></div></td>
+                        <td class="col-2"><div class="form-floating">{{ form.paymentmethod}}<label for="customer">Met. Pagamento</label></td>
+                        <td class="col-2 d-flex gap-1"><b>Total</b></td>
+                        <td class="col-2 d-flex align-items-center justify-content-start" id="total">R$ <span id="total-sum">{{form.total}}</span></td>
+                        <td class="col-4"></td>
                     </tr>
-                    {% endfor %}
-                    </tbody>
-                    <button class="pe-auto btn btn-primary position-absolute top-100 start-100 translate-middle rounded-circle z-2" id="add-form">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                </table>
+                </tfoot>
+            </table>
         </div>
         <button class="pe-auto btn btn-primary w-100" type="submit">
             Finalizar
@@ -52,6 +57,6 @@
     </form>
 </div>
 {% endblock %}
-{%block extra_js%}
-<script src="{%static 'js/add_products.js'%}"></script>
-{%endblock%}
+{% block extra_js %}
+<script src="{% static 'js/add_products.js' %}"></script>
+{% endblock %}

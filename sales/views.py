@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse,redirect
 from .models import Sale
 from .form import *
 from stock.models import Stock
@@ -19,7 +19,12 @@ def create_sales(request):
             for sale_product in sale_products:
                 sale_product.sale = sale
                 sale_product.save()
-            return render('get_sales')
+            return redirect('get_sales')
+        else:
+            print(sale_form.errors)
+            print(sale_product_formset.errors)
+            return HttpResponse(f'Formulários inválidos: {sale_form.errors}, {sale_product_formset.errors}')
+
     else:
         data={}
         data['form']=SaleForm()

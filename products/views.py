@@ -2,7 +2,17 @@ from django.shortcuts import render,redirect,HttpResponse
 from products.models import Products
 from products.form import Product_Form
 from stock.models import Stock
+from django.core import serializers
+from django.http import JsonResponse
+import json
 
+def listar_produtos(request):
+    if request.user.is_anonymous:
+        return redirect('login')
+    else:
+        data=list(Products.objects.values())
+        return JsonResponse(data,safe=False)
+    
 def get_products(request):
     if request.user.is_anonymous:
         return redirect('login')
