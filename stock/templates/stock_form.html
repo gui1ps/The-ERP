@@ -4,10 +4,10 @@
 
 {% block content %}
 <div class="table-responsive container-fluid h-75 my-5">
-    <form method="post">
+    <form method="post" class="">
         {% csrf_token %}
         {{ formset.management_form }}
-        <table class="table align-middle table-hover table-bordered">
+        <table class="table align-middle table-hover table-bordered  position-relative">
             <thead class="table-light align-middle sticky-top" id="tableHeader">
             <tr class="d-flex w-100">
                 <th class="col-4">
@@ -40,7 +40,7 @@
             {% endfor %}
             </tbody>
         </table>
-        <button class="pe-auto btn btn-primary w-100" type="submit">
+        <button class="pe-auto btn btn-primary w-75 position-absolute bottom-0 start-50 translate-middle-x z-3 mb-4" type="submit">
             <i class="fa-solid fa-check"></i>
         </button>
     </form>

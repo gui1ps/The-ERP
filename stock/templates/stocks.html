@@ -25,7 +25,7 @@
       {% for stock in data %}
       <tr class="d-flex w-100">
         <td class="data-1 col-6">{{ stock.product.name }}</td>
-        <td class="data-2 col-6">{{ stock.quantity }}</td>
+        <td class="data-2 col-6">{{ stock.quantity }} {{stock.product.unit}}</td>
       </tr>
       {% endfor %}
     </tbody>
