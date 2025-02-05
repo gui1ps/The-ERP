@@ -1,13 +1,13 @@
 {%load static%}
-<div class="h-100 py-1 border-end bg-primary text-light overflow-y-scroll" id="sidebar">
-    <nav class="h-100 d-flex flex-column flex-start align-items-start justify-content-center px-3">
-        <ul class="d-flex flex-column p-0 py-2">
-            <li class="d-flex gap-3 fs-5 my-4 active rounded"><img src="{%static 'icons/house-solid.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link w-100" href="{%url 'home' %}" aria-current="page">Home</a></li>
-            <li class="d-flex gap-3 fs-5my-4 rounded"><img src="{%static 'icons/mdi_cart-outline.svg'%}" height="40px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{%url 'get_sales' %}">Vendas</a></li>
-            <li class="d-flex gap-3 fs-5 my-4 rounded rounded"><img src="{%static 'icons/ph_user-bold.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{% url 'get_customers' %}">Clientes</a></li>
-            <li class="d-flex gap-3 fs-5 my-4 rounded"><img src="{%static 'icons/carbon_product.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{% url 'get_products' %}">Produtos</a></li>
-            <li class="d-flex gap-3 fs-5 my-4 rounded"><img src="{%static 'icons/boxes-stacked-solid.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{% url 'get_stock' %}">Estoque</a></li>
-            <li class="d-flex gap-3 fs-5 my-4 rounded"><img src="{%static 'icons/house-solid.svg'%}" height="30px" class="object-fit-fill" alt="ícone home"><a class="nav-link" href="{% url 'get_suppliers' %}">Fornecedores</a></li>
+<div class="h-100 py-1 border-end bg-primary text-light" id="sidebar">
+    <nav class="h-100 d-flex flex-column justify-content-between px-3">
+        <ul class="d-flex flex-column p-0 overflow-y-scroll" style="list-style: none;">
+            <li class="fs-5 p-2 my-3 rounded"><a class="nav-link d-flex align-items-center gap-2" href="{%url 'home' %}" aria-current="page"><i class="fa-solid fa-house fa-xl"></i>Home</a></li>
+            <li class="fs-5 p-2 my-3 rounded"><a class="nav-link d-flex align-items-center gap-2" href="{%url 'get_sales' %}"><i class="fa-solid fa-cart-shopping fa-xl"></i>Vendas</a></li>
+            <li class="fs-5 p-2 my-3 rounded"><a class="nav-link d-flex align-items-center gap-2" href="{% url 'get_customers' %}"><i class="fa-solid fa-user fa-xl"></i>Clientes</a></li>
+            <li class="fs-5 p-2 my-3 rounded"><a class="nav-link d-flex align-items-center gap-2" href="{% url 'get_products' %}"><i class="fa-solid fa-box fa-xl"></i>Produtos</a></li>
+            <li class="fs-5 p-2 my-3 rounded"><a class="nav-link d-flex align-items-center gap-2" href="{% url 'get_stock' %}"><i class="fa-solid fa-boxes-stacked fa-xl"></i>Estoque</a></li>
+            <li class="fs-5 p-2 my-3 rounded"><a class="nav-link d-flex align-items-center gap-2" href="{% url 'get_suppliers' %}"><i class="fa-solid fa-truck fa-xl"></i>Fornecedores</a></li>
         </ul>
         <div class="w-100 border-top">
             <div class="dropdown my-4">
