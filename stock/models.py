@@ -21,3 +21,4 @@ def create_stock_for_product(sender, instance, created, **kwargs):
         if currentStock:
             if currentStock.quantity>=instance.quantity:
                 currentStock.quantity-=instance.quantity
+                currentStock.save()
