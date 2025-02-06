@@ -4,9 +4,9 @@
 
 {% block content %}
 <div class="rounded p-3 my-auto">
-    <form action="{%url 'create_sales'%}" method="post" id="form-container" class="border-primary position-relative">
+    <form action="{%url 'create_sales'%}" method="post" id="form-container" class="border-primary position-relative" style="height: 75vh;">
         {% csrf_token %}
-        <div class="table-responsive container-fluid p-0">
+        <div class="table-responsive container-fluid p-0 h-100">
             <table class="table align-middle table-hover table-bordered">
                 <thead class="table-light align-middle sticky-top" id="tableHeader">
                     <tr class="d-flex w-100">
@@ -17,8 +17,8 @@
                         <th class="col-4 p-0 text-center">Ações</th>
                     </tr>
                 </thead>
-                <tbody class="align-middle mt-5" id="table-products">
-                    <tr class="d-flex w-100">
+                <tbody class="align-middle mt-5 position-relative h-100" id="table-products">
+                    <tr class="d-flex w-100 sticky-top">
                         <td class="col-2">
                             <select id="product-selector" class="form-select border-primary bg-transparent">
                                 <option value="" selected>---------</option>
@@ -40,7 +40,7 @@
                     {{ formset.management_form }}
                     <!--Os forms são inclusos aqui de forma dinâmica pelo código em Java Script-->                    
                 </tbody>
-                <tfoot>
+                <tfoot class="sticky-bottom">
                     <tr class="d-flex w-100">
                         <td class="col-2"><div class="form-floating">{{ form.customer}}<label for="customer">Cliente</label></div></td>
                         <td class="col-2"><div class="form-floating">{{ form.paymentmethod}}<label for="customer">Met. Pagamento</label></td>
